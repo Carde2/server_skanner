@@ -8,14 +8,25 @@ from colorama import Fore, Back, Style
 from mcstatus import JavaServer
 init()
 
+print(Fore.MAGENTA + """
+   ______  __                             __
+  / ____ \/ /__   ______  ____ ___  ___  / /
+ / / __ `/ __/ | / / __ \/ __ `__ \/ _ \/ / 
+/ / /_/ / /_ | |/ / /_/ / / / / / /  __/ /  
+\ \__,_/\__/ |___/\____/_/ /_/ /_/\___/_/   
+ \____/                                     
+ """)
+
+
+
 #Ввод начальных данных
-ipdomen = input(Fore.YELLOW + "Введите айпи/домен: ")
+ipdomen = input(Fore.CYAN + "Введите айпи/домен: ")
 ip = socket.gethostbyname(ipdomen)
 print(Fore.CYAN + f"Получен IP: {ip}")
-portfrom = int(input(Fore.YELLOW + "Введите порт, с которого пойдет скан (Лучше 20000): "))
-portto = int(input(Fore.YELLOW + "Введите порт, до какого пойдет скан (Лучше 65535): "))
+portfrom = int(input(Fore.CYAN + "Введите порт, с которого пойдет скан (Лучше 20000): "))
+portto = int(input(Fore.CYAN + "Введите порт, до какого пойдет скан (Лучше 65535): "))
 print(Fore.CYAN + f"Скан идёт с {portfrom} по {portto} порты")
-numbertxt = input(Fore.YELLOW + "Доп текст для подписи txt файла (servers_[ваша часть].txt): ")
+numbertxt = input(Fore.CYAN + "Доп текст для подписи txt файла (servers_[ваша часть].txt): ")
 print(Fore.CYAN + f"Название файла: servers_{numbertxt}.txt")
 
 #Логика скана
@@ -32,7 +43,7 @@ def check_port(port):
             print(Fore.GREEN + f"Сервер {ip}:{str(port)} существует" + Fore.WHITE + f"\n{clear_motd}\n")
         except Exception as error:
             print(Fore.RED + f"Сервер {ip}:{str(port)} Есть\n Но произошла ошибка при получении MOTD: \n" + Fore.LIGHTRED_EX + f"{error}\n")
-            with open(f"servers{numbertxt}.txt", "a") as file:
+            with open(f"NONE_servers_{numbertxt}.txt", "a") as file:
                 file.write(f"{ip}:{str(port)}\nНе удалось получить MOTD, возможно сервер недействителен\n\n")
         with open(f"servers_{numbertxt}.txt", "a") as file:
                 file.write(f"{ip}:{str(port)}\nMOTD: {clear_motd}\n\n")
@@ -46,6 +57,3 @@ with ThreadPoolExecutor() as executor:
 
 #Выход
 input("Enter для выхода!")
-#Айпи для теста              65.21.127.190    65.108.75.109
-#Домен для теста             d19.gamely.pro
-#Всё работает   65.108.234.37:25045
