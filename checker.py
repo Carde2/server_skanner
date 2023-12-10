@@ -1,10 +1,6 @@
-import socket
-import re
-import sys
-import colorama
+import socket, re, sys, colorama
 from concurrent.futures import ThreadPoolExecutor
-from colorama import init
-from colorama import Fore, Back, Style
+from colorama import init, Fore
 from mcstatus import JavaServer
 init()
 
@@ -42,7 +38,7 @@ def check_port(port):
             clear_motd = re.sub(r'§.|&.', '', motd)
             print(Fore.GREEN + f"Сервер {ip}:{str(port)} существует" + Fore.WHITE + f"\n{clear_motd}\n")
         except Exception as error:
-            print(Fore.RED + f"Сервер {ip}:{str(port)} Есть\n Но произошла ошибка при получении MOTD: \n" + Fore.LIGHTRED_EX + f"{error}\n")
+            print(Fore.RED + f"Сервер {ip}:{str(port)} Есть\nНо произошла ошибка при получении MOTD: \n" + Fore.LIGHTRED_EX + f"{error}\n")
             with open(f"NONE_servers_{numbertxt}.txt", "a") as file:
                 file.write(f"{ip}:{str(port)}\nНе удалось получить MOTD, возможно сервер недействителен\n\n")
         with open(f"servers_{numbertxt}.txt", "a") as file:
