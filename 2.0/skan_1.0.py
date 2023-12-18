@@ -1,4 +1,4 @@
-import sys, socket, re, os, logos, menus, time
+import sys, socket, re, os, logos, time
 from concurrent.futures import ThreadPoolExecutor
 from mcstatus import JavaServer
 from pystyle import *
