@@ -1,2 +1,2 @@
-@py -3 new_checker.py
+@py -3 skan_1.0.py
 @pause
